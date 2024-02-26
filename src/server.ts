@@ -1,7 +1,7 @@
 import "express-async-errors";
 import express, { Request, Response, NextFunction } from "express";
 import { AppError } from "./utils/AppError";
-import { sqliteConnection } from "./database/sqlite";
+import { knexConnection } from "./database/knex";
 const app = express();
 
 app.use(express.json());
@@ -9,7 +9,7 @@ app.use(express.json());
 const PORT = 3333;
 app.listen(PORT, (): void => console.log(`Server is running on ${PORT}`));
 
-sqliteConnection();
+knexConnection();
 
 app.get("/", (request: Request, response: Response): void => {
   response.json("Hello world :)");
