@@ -7,7 +7,7 @@ interface IBody {
   product_id: string;
   size: string;
   price: string;
-  idList: string[];
+  sizesId: number[];
 }
 
 export default class ProductsSizesController {
@@ -30,9 +30,9 @@ export default class ProductsSizesController {
   }
 
   async delete(request: Request<{}, {}, IBody>, response: Response): Promise<Response> {
-    const { idList } = request.body;
+    const { sizesId } = request.body;
 
-    idList.map(async(id: string): Promise<void> => {
+    sizesId.map(async(id: number): Promise<void> => {
       await knexConnection("products_sizes").where({ id }).delete();
     });
 
