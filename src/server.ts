@@ -2,7 +2,7 @@ import "express-async-errors";
 import express, { Request, Response, NextFunction } from "express";
 import { AppError } from "./utils/AppError";
 import { UPLOADS_FOLDER } from "./configs/uploads";
-import routes from "./routes";
+import routes from "./routes/index.routes";
 const app = express();
 
 const PORT = 3333;
