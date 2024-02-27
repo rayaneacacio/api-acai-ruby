@@ -3,13 +3,11 @@ import express, { Request, Response, NextFunction } from "express";
 import { AppError } from "./utils/AppError";
 import { UPLOADS_FOLDER } from "./configs/uploads";
 import routes from "./routes/index.routes";
-import cors from "cors";
 const app = express();
 
 const PORT = 3333;
 app.listen(PORT, (): void => console.log(`Server is running on ${PORT}`));
 
-app.use(cors());
 app.use(express.json());
 
 app.use("/files", express.static(UPLOADS_FOLDER));
