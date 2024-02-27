@@ -1,7 +1,9 @@
+const path = require("path");
+
 module.exports = {
   apps : [{
     name: "app",
-    script: "./dist/src/server.js",
+    script: path.resolve("dist", "src", "server.js"),
     instances: "max",
     env: {
       NODE_ENV: "development",
