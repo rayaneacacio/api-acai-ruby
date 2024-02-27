@@ -4,6 +4,7 @@ exports.up = (knex: Knex): Promise<void> => knex.schema.createTable("products", 
   table.increments("id");
   table.text("name");
   table.text("category");
+  table.text("image");
   table.timestamp("created_at").defaultTo(knex.fn.now());
   table.timestamp("updated_at").defaultTo(knex.fn.now());
 });
