@@ -1,15 +1,18 @@
 import "express-async-errors";
 import express, { Request, Response, NextFunction } from "express";
 import { AppError } from "./utils/AppError";
-import { knexConnection } from "./database/knex";
+import { UPLOADS_FOLDER } from "./configs/uploads";
+import routes from "./routes";
 const app = express();
-
-app.use(express.json());
 
 const PORT = 3333;
 app.listen(PORT, (): void => console.log(`Server is running on ${PORT}`));
 
-knexConnection();
+app.use(express.json());
+
+app.use("/files", express.static(UPLOADS_FOLDER));
+
+app.use(routes);
 
 app.get("/", (request: Request, response: Response): void => {
   response.json("Hello world :)");

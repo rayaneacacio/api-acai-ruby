@@ -6,7 +6,7 @@ const config: { [key: string]: Knex.Config } = {
   development: {
     client: "sqlite3",
     connection: {
-      filename: "dist/src/database/database.db"
+      filename: path.resolve("dist", "src", "database", "database.db")
     },
     pool: {
       afterCreate: (conn: Database, cb: () => {}) => conn.run('PRAGMA foreign_keys = ON', cb)
