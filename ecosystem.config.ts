@@ -1,4 +1,4 @@
-module.exports = {
+export = {
   apps : [{
     name: "app",
     script: "./dist/src/server.js",
