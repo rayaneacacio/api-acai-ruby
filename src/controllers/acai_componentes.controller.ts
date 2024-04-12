@@ -7,10 +7,6 @@ interface IBody {
   componentsId: number[];
 }
 
-interface IQuery {
-  type: string
-}
-
 export default class AcaiComponentesController {
   async create(request: Request<{}, {}, IBody>, response: Response): Promise<Response> {
     const { components, type } = request.body;
@@ -22,9 +18,19 @@ export default class AcaiComponentesController {
     return response.json();
   }
 
-  async index(request: Request<{}, {}, {}, IQuery>, response: Response): Promise<Response> {
-    const { type } = request.query;
-    const components = await knexConnection("acai_componentes").where({ type });
+  async index(request: Request, response: Response): Promise<Response> {
+    const cremes = await knexConnection("acai_componentes").where({ type: "cremes" });
+    const complementos = await knexConnection("acai_componentes").where({ type: "complementos" }); 
+    const coberturas = await knexConnection("acai_componentes").where({ type: "coberturas" });
+    const extras = await knexConnection("acai_componentes").where({ type: "extras" });
+
+    const components = {
+      cremes: cremes,
+      complementos: complementos,
+      coberturas: coberturas,
+      extras: extras
+    }
+
     return response.json(components);
   }
 
